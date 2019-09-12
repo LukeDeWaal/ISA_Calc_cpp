@@ -96,10 +96,11 @@ public:
             ceil_vals = this->layers[i].get_ceiling_values();
             p = ceil_vals[1];
             d = ceil_vals[2];
+            this->n_layers += 1;
         }
+        this->height_range[0] = this->layers[0].get_layer_heights()[0];
+        this->height_range[1] = this->layers.back().get_layer_heights()[1];
     }
-
-
 };
 
 #endif //ISACPP_ATMOSPHERE_H

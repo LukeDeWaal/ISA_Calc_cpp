@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Atmosphere.h"
+#include "src/Atmosphere.h"
 
 int main() {
     Atmosphere A = Atmosphere();

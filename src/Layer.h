@@ -12,6 +12,7 @@
 class Layer {
 private:
 
+    // Define constants and se up all other important variables
     double g0 = 9.80665;
     double R = 287.0;
     double gamma = 1.4;
@@ -19,6 +20,7 @@ private:
 
     std::string name;
 
+    // Helper Methods
     double lapserate(){
         return (this->T1 - this->T0)/(this->h1 - this->h0);
     }
@@ -33,7 +35,7 @@ private:
     }
 
 public:
-    // Constructor
+    // Constructors
     Layer(double h0, double h1, double T0, double T1, double p0, double d0, std::string name = "Unnamed") {
 
         this->name = std::move(name);
@@ -52,6 +54,7 @@ public:
 
     }
 
+    // Main function to calculate Temperature, Pressure and Density within a layer
     std::array<double, 3> calculate(double h){
         double T, p, d;
 
@@ -70,26 +73,31 @@ public:
         return values;
     }
 
+    // Method to return the floor values of the layer
     std::array<double, 3> get_floor_values(){
         std::array<double, 3> floor_vals = {this->T0, this->p0, this->d0};
         return floor_vals;
     }
 
+    // Method to return the ceiling values of the layer
     std::array<double, 3> get_ceiling_values(){
         std::array<double, 3> ceil_values = this->calculate(this->h1);
         return ceil_values;
     }
 
+    // Method to return the total height of the layer
     std::array<double, 2> get_layer_heights(){
         std::array<double, 2> heights = {this->h0, this->h1};
         return heights;
     }
 
+    // Method to return the name of the layer
     std::string get_name(){
         return this->name;
     }
 
-    void set_name(std::string name){
+    // Method to set the name of the layer
+    void set_name(std::string& name){
         this->name = name;
     }
 

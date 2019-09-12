@@ -3,4 +3,5 @@ project(ISACpp)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(ISACpp main.cpp Layer.h Atmosphere.h)
+include_directories(C:/Users/lucky/Documents/CppHeaders)
+add_executable(ISACpp main.cpp src/Layer.h src/Atmosphere.h)
