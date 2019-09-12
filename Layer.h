@@ -1,9 +1,9 @@
 //
-// Created by lucky on 12-Aug-19.
+// Created by lucky on 12/09/2019.
 //
 
-#ifndef ISA_CALC_LAYER_H
-#define ISA_CALC_LAYER_H
+#ifndef ISACPP_LAYER_H
+#define ISACPP_LAYER_H
 
 #include <iostream>
 #include <cmath>
@@ -36,7 +36,7 @@ public:
     // Constructor
     Layer(double h0, double h1, double T0, double T1, double p0, double d0, std::string name = "Unnamed") {
 
-        this->name = name;
+        this->name = std::move(name);
 
         this->h0 = h0;
         this->h1 = h1;
@@ -95,5 +95,4 @@ public:
 
 };
 
-
-#endif //ISA_CALC_LAYER_H
+#endif //ISACPP_LAYER_H
