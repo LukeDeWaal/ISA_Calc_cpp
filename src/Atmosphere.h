@@ -35,8 +35,8 @@ private:
     }
 
 public:
-
-    Atmosphere(){
+    // Constructors
+    Atmosphere(){ // Default Constructor
         this->T = {288.15, 216.65, 216.65, 228.65, 270.65, 270.65, 214.65, 186.95, 186.95, 201.95, 251.95};
         this->H = {0, 11000.0, 20000.0, 32000.0, 47000.0, 51000.0, 71000.0, 84852.0, 90000.0, 100000.0, 110000.0};
         this->N = {"Troposphere", "Tropopause", "Stratosphere", "Stratosphere", "Stratopause",
@@ -67,11 +67,13 @@ public:
         this->construct();
     }
 
+    // Method to calculate at a specified height h
     std::array<double, 3> calculate(double h) {
         unsigned int layer_index = this->layer_search(h);
         return this->layers[layer_index].calculate(h);
     }
 
+    // Method to be called when initalizing the atmosphere
     void construct() {
 
         double p;
