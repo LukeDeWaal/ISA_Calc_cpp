@@ -21,15 +21,14 @@ private:
     std::string name;
 
     // Helper Methods
-    double lapserate(){
-        return (this->T1 - this->T0)/(this->h1 - this->h0);
+    double lapserate() {
+        return (this->T1 - this->T0) / (this->h1 - this->h0);
     }
 
     double temperature(double h) {
-        if(this->L == 0){
+        if (this->L == 0) {
             return this->T0;
-        }
-        else {
+        } else {
             return this->T0 + this->L * (h - this->h0);
         }
     }
@@ -50,54 +49,51 @@ public:
 
     }
 
-    Layer() {
-
-    }
+    Layer() = default;
 
     // Main function to calculate Temperature, Pressure and Density within a layer
-    std::array<double, 3> calculate(double h){
+    std::array<double, 3> calculate(double h) {
         double T, p, d;
 
-        if(this->L == 0){
+        if (this->L == 0) {
             T = this->T0;
-            p = this->p0*exp(-this->g0/(this->R*this->T0)*(h - this->h0));
-            d = this->d0*exp(-this->g0/(this->R*this->T0)*(h - this->h0));
-        }
-        else{
-            double C = -this->g0/(this->L*this->R);
+            p = this->p0 * exp(-this->g0 / (this->R * this->T0) * (h - this->h0));
+            d = this->d0 * exp(-this->g0 / (this->R * this->T0) * (h - this->h0));
+        } else {
+            double C = -this->g0 / (this->L * this->R);
             T = this->temperature(h);
-            p = this->p0*pow((T/this->T0), C);
-            d = this->d0*pow((T/this->T0), C-1);
+            p = this->p0 * pow((T / this->T0), C);
+            d = this->d0 * pow((T / this->T0), C - 1);
         }
         std::array<double, 3> values = {T, p, d};
         return values;
     }
 
     // Method to return the floor values of the layer
-    std::array<double, 3> get_floor_values(){
+    std::array<double, 3> get_floor_values() {
         std::array<double, 3> floor_vals = {this->T0, this->p0, this->d0};
         return floor_vals;
     }
 
     // Method to return the ceiling values of the layer
-    std::array<double, 3> get_ceiling_values(){
+    std::array<double, 3> get_ceiling_values() {
         std::array<double, 3> ceil_values = this->calculate(this->h1);
         return ceil_values;
     }
 
     // Method to return the total height of the layer
-    std::array<double, 2> get_layer_heights(){
+    std::array<double, 2> get_layer_heights() {
         std::array<double, 2> heights = {this->h0, this->h1};
         return heights;
     }
 
     // Method to return the name of the layer
-    std::string get_name(){
+    std::string get_name() {
         return this->name;
     }
 
     // Method to set the name of the layer
-    void set_name(std::string& name){
+    void set_name(std::string &name) {
         this->name = name;
     }
 
